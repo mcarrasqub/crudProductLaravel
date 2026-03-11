@@ -1,0 +1,66 @@
+PROYECTO: Taller 01 - CRUD de Product (tienda de mascotas)
+Por: Mariana Carrasquilla Botero
+
+REQUISITOS
+- PHP 8.x
+- Composer
+- XAMPP (MySQL) en ejecución
+
+1. DESCARGA DEL PROYECTO
+- Descomprimir el .zip en la carpeta de proyectos de PHP, por ejemplo:
+  C:\xampp\htdocs\crudproduct
+
+2. CONFIGURAR BASE DE DATOS (XAMPP / MySQL)
+- Crear una base de datos llamada: product
+
+- El proyecto asume la siguiente configuración (ver archivo .env):
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=product
+  DB_USERNAME=root
+  DB_PASSWORD=
+
+3. INSTALAR DEPENDENCIAS
+- Abrir una terminal en la carpeta del proyecto y ejecutar:
+  composer install
+
+4. ARCHIVO .env
+- El proyecto ya incluye un archivo .env configurado para la BD "product".
+
+5. MIGRATIONS Y SEEDERS
+- Ejecutar las migraciones para crear las tablas necesarias:
+  php artisan migrate
+
+- (Opcional) Ejecutar el seeder para crear productos de prueba:
+  php artisan db:seed
+
+  El seeder está definido en: database/seeders/DatabaseSeeder.php
+  (crea varios registros en la tabla products).
+
+6. LEVANTAR EL SERVIDOR
+Opción A (recomendada):
+- En la raíz del proyecto ejecutar:
+  php artisan serve
+- Abrir en el navegador:
+  http://127.0.0.1:8000/
+
+Opción B (Apache de XAMPP):
+- Colocar el proyecto en htdocs y abrir:
+  http://localhost/crudproduct/public
+
+7. RUTA INICIAL Y FUNCIONALIDAD
+- La ruta inicial del taller es:
+  GET /  (definida en routes/web.php como product.home)
+
+- Desde esta pantalla inicial se puede:
+  - Crear un nuevo producto.
+  - Listar los productos existentes.
+
+- Rutas principales:
+  GET  /                -> vista inicial (home)
+  GET  /products        -> listar productos
+  GET  /products/create -> formulario de creación
+  POST /products        -> guardar nuevo producto en BD
+  GET  /products/{id}   -> ver detalle de un producto
+  DELETE /products/{id} -> eliminar producto
