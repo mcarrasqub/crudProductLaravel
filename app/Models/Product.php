@@ -87,5 +87,4 @@ class Product extends Model
     {
         return $this->attributes['updated_at'];
     }
-
 }

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Throwable;
 
@@ -31,15 +30,15 @@ class ProductController extends Controller
     }
 
     public function show(string $id): View
-{
-    $viewData = [];
-    $product = Product::findOrFail($id);
-    $viewData['title'] = $product->getName().' - Online Store';
-    $viewData['subtitle'] = $product->getName().' - Product information';
-    $viewData['product'] = $product;
+    {
+        $viewData = [];
+        $product = Product::findOrFail($id);
+        $viewData['title'] = $product->getName().' - Online Store';
+        $viewData['subtitle'] = $product->getName().' - Product information';
+        $viewData['product'] = $product;
 
-    return view('product.show')->with('viewData', $viewData);
-}
+        return view('product.show')->with('viewData', $viewData);
+    }
 
     public function create(): View
     {
@@ -58,7 +57,7 @@ class ProductController extends Controller
             return redirect()
                 ->route('product.home')
                 ->with('status', 'Item created successfully');
-        } catch (Throwable $e) { 
+        } catch (Throwable $e) {
             return redirect()
                 ->route('product.home')
                 ->with('status', 'Failed to create item.');
